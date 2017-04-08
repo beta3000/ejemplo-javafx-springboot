@@ -55,6 +55,7 @@ public class ProyectoController {
         Proyecto proyecto = new Proyecto();
         proyecto.setNombre("Uno");
         proyecto.setFechaCreacion(LocalDateTime.now());
+
         proyectoService.save(proyecto);
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
