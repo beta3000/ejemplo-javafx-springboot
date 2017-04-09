@@ -4,19 +4,18 @@ import com.ciro.EjemploApplication;
 import com.ciro.domain.Proyecto;
 import com.ciro.service.ProyectoService;
 import com.ciro.util.Utilitario;
+import com.ciro.view.CrearProyectoView;
 import com.ciro.view.EntradasView;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @FXMLController
@@ -41,9 +40,16 @@ public class ProyectoController {
             EjemploApplication.showView(EntradasView.class);
             entradasController.actualizarDatosProyecto(proyecto);
         }else {
-            showMessageAlert("Aviso","No has seleccionado proyecto.");
+            Utilitario.showMessageAlert("Aviso","No has seleccionado proyecto.");
         }
         System.out.println(proyecto);
+    }
+
+    @FXML
+    private void nuevoProyecto(){
+        EjemploApplication.getStage().setHeight(Utilitario.ALTURA_CREAR_PROYECTO);
+        EjemploApplication.getStage().setWidth(Utilitario.ANCHO_CREAR_PROYECTO);
+        EjemploApplication.showView(CrearProyectoView.class);
     }
 
     public void initialize(){
@@ -52,11 +58,6 @@ public class ProyectoController {
     }
 
     private void showTableProyectos(){
-        Proyecto proyecto = new Proyecto();
-        proyecto.setNombre("Uno");
-        proyecto.setFechaCreacion(LocalDateTime.now());
-
-        proyectoService.save(proyecto);
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         fechaCreacionColumn.setCellValueFactory(
@@ -69,7 +70,7 @@ public class ProyectoController {
         nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
     }
 
-    private void actualizaTabla(){
+    public void actualizaTabla(){
         addData();
         tableViewProyectos.refresh();
     }
@@ -80,12 +81,7 @@ public class ProyectoController {
         tableViewProyectos.setItems(proyectoObservableList);
     }
 
-    private void showMessageAlert(String titulo, String mensaje){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(titulo);
-        alert.setHeaderText(mensaje);
-        alert.showAndWait();
-    }
+
 
     private ProyectoService proyectoService;
     @Autowired

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../css/modena_dark.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ciro.controller.ProyectoController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@modena_dark.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ciro.controller.ProyectoController">
    <children>
       <Label alignment="CENTER" layoutX="272.0" layoutY="6.0" text="Proyectos" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
@@ -36,7 +36,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" text="Nuevo">
+            <Button mnemonicParsing="false" onAction="#nuevoProyecto" text="Nuevo">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
