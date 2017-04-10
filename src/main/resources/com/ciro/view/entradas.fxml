@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" stylesheets="@modena_dark.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ciro.controller.EntradasController">
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" stylesheets="@modena_dark.css"
+            xmlns="http://javafx.com/javafx/8.0.111" fx:controller="com.ciro.controller.EntradasController">
    <children>
       <MenuBar layoutX="14.0" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Archivo">
+            <Menu mnemonicParsing="false" text="Proyecto">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#nuevoProyecto" text="Nuevo" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirProyectos" text="Abrir" />
@@ -52,7 +44,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label prefHeight="20.0" prefWidth="127.0" text="Datos del Proyecto" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                         <Label prefHeight="20.0" prefWidth="127.0" text="Datos del Proyecto" GridPane.columnSpan="2"
+                                GridPane.halignment="LEFT">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -66,7 +59,7 @@
                            </padding>
                         </Label>
                         <Label fx:id="labelProyectoId" text="labelId" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
-                        <Label text="Fecha Creación" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                         <Label text="Creación" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
@@ -74,7 +67,7 @@
                               <Insets right="10.0" />
                            </padding>
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                               <Font name="System Bold" size="14.0"/>
                            </font>
                         </Label>
                         <Label fx:id="labelFechaCreacion" text="labelFechaCreacion" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
@@ -86,7 +79,7 @@
                               <Insets right="10.0" />
                            </padding>
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                               <Font name="System Bold" size="14.0"/>
                            </font>
                         </Label>
                         <Label fx:id="labelNombre" text="labelNombre" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
@@ -95,27 +88,120 @@
                         <Insets left="10.0" right="10.0" />
                      </padding>
                   </GridPane>
+                   <GridPane layoutY="141.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                             AnchorPane.topAnchor="140.0">
+                       <columnConstraints>
+                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                       </columnConstraints>
+                       <rowConstraints>
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                       </rowConstraints>
+                       <children>
+                           <Label prefHeight="20.0" prefWidth="96.0" text="Configuración" GridPane.columnSpan="2"
+                                  GridPane.halignment="LEFT">
+                               <font>
+                                   <Font name="System Bold" size="14.0"/>
+                               </font>
+                           </Label>
+                           <Label text="Valor A" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                               <font>
+                                   <Font name="System Bold" size="14.0"/>
+                               </font>
+                               <padding>
+                                   <Insets right="10.0"/>
+                               </padding>
+                           </Label>
+                           <Label fx:id="labelValorA" text="labelValorA" GridPane.columnIndex="1"
+                                  GridPane.halignment="LEFT" GridPane.rowIndex="1"/>
+                           <Label text="Valor B" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                               <GridPane.margin>
+                                   <Insets/>
+                               </GridPane.margin>
+                               <padding>
+                                   <Insets right="10.0"/>
+                               </padding>
+                               <font>
+                                   <Font name="System Bold" size="14.0"/>
+                               </font>
+                           </Label>
+                           <Label fx:id="labelValorB" text="labelValorB" GridPane.columnIndex="1"
+                                  GridPane.halignment="LEFT" GridPane.rowIndex="2"/>
+                           <Label text="Actualizado" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                               <GridPane.margin>
+                                   <Insets/>
+                               </GridPane.margin>
+                               <padding>
+                                   <Insets right="10.0"/>
+                               </padding>
+                               <font>
+                                   <Font name="System Bold" size="14.0"/>
+                               </font>
+                           </Label>
+                           <Label fx:id="labelFechaActualizacion" text="labelFechaActualizacion"
+                                  GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3"/>
+                           <Button mnemonicParsing="false" onAction="#actualizarConfiguracion" prefHeight="25.0"
+                                   prefWidth="132.0" text="Editar" GridPane.columnSpan="2" GridPane.halignment="CENTER"
+                                   GridPane.rowIndex="4">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </Button>
+                       </children>
+                       <padding>
+                           <Insets left="10.0" right="10.0"/>
+                       </padding>
+                   </GridPane>
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                   <TableView fx:id="tableViewEntradas" layoutX="14.0" layoutY="80.0" prefHeight="493.0"
+                              prefWidth="875.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Fecha" />
-                      <TableColumn prefWidth="75.0" text="Divisa A" />
-                        <TableColumn prefWidth="75.0" text="Tipo Cambio" />
-                        <TableColumn prefWidth="75.0" text="Divisa B" />
+                        <TableColumn fx:id="fechaColumn" prefWidth="75.0" text="Fecha"/>
+                        <TableColumn fx:id="divisaAColumn" prefWidth="75.0" text="Divisa A"/>
+                        <TableColumn fx:id="tipoCambioColumn" prefWidth="75.0" text="Tipo Cambio"/>
+                        <TableColumn fx:id="divisaBColumn" prefWidth="75.0" text="Divisa B"/>
                         <TableColumn prefWidth="75.0" text="Grupo Columna">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="Divisa A * Valor A" />
-                              <TableColumn prefWidth="75.0" text="Divisa B * Valor B" />
+                               <TableColumn fx:id="divisaBPorValorAColumn" prefWidth="75.0" text="Divisa B * Valor A"/>
+                               <TableColumn fx:id="divisaBPorValorBColumn" prefWidth="75.0" text="Divisa B * Valor B"/>
                            </columns>
                         </TableColumn>
-                        <TableColumn prefWidth="75.0" text="Acumulado" />
+                        <TableColumn fx:id="acumuladoColumn" prefWidth="75.0" text="Acumulado"/>
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
+                   <HBox layoutX="33.0" layoutY="32.0" spacing="10.0" AnchorPane.leftAnchor="0.0"
+                         AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                       <children>
+                           <Button mnemonicParsing="false" onAction="#crearEntrada" text="Añadir">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </Button>
+                           <Button mnemonicParsing="false" text="Editar">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </Button>
+                           <Button mnemonicParsing="false" text="Eliminar">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </Button>
+                       </children>
+                       <padding>
+                           <Insets left="10.0"/>
+                       </padding>
+                   </HBox>
                </children></AnchorPane>
         </items>
       </SplitPane>

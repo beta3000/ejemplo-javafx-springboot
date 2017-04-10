@@ -13,44 +13,57 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @FXMLController
 public class ConfiguracionController {
+    @FXML
+    private TextField txtValorA;
+    @FXML
+    private TextField txtValorB;
     private Proyecto proyecto;
-    @FXML
-    TextField txtValorA;
-    @FXML
-    TextField txtValorB;
+    //Inyecciones
+    private ProyectoService proyectoService;
+    private EntradasController entradasController;
 
     @FXML
     private void configuracionProyecto(){
-        String valorA = txtValorA.getText().toString();
-        String valorB = txtValorB.getText().toString();
+        String valorA = txtValorA.getText();
+        String valorB = txtValorB.getText();
 
         if(valorA.isEmpty() || valorB.isEmpty()){
             Utilitario.showMessageAlert("Valores no definido","Ingresa valores para A y B");
         }else {
-            Configuracion configuracion = new Configuracion();
-            configuracion.setValorA(Double.parseDouble(valorA));
-            configuracion.setValorB(Double.parseDouble(valorB));
-            proyecto.setConfiguracion(configuracion);
-            proyectoService.save(proyecto);
-            cambiarView();
+            if (proyecto.getConfiguracion() == null) {
+                Configuracion configuracion = new Configuracion();
+                configuracion.setValorA(Double.parseDouble(valorA));
+                configuracion.setValorB(Double.parseDouble(valorB));
+                proyecto.setConfiguracion(configuracion);
+                proyecto = proyectoService.save(proyecto);
+                cambiarView();
+            } else {
+                Configuracion configuracion = proyecto.getConfiguracion();
+                configuracion.setValorA(Double.parseDouble(valorA));
+                configuracion.setValorB(Double.parseDouble(valorB));
+                proyecto.setConfiguracion(configuracion);
+                proyecto = proyectoService.save(proyecto);
+                cambiarView();
+            }
+
         }
     }
 
-
-    public void establecerProyecto(Proyecto proyecto){
+    void establecerProyecto(Proyecto proyecto) {
+        if (proyecto.getConfiguracion() != null) {
+            txtValorA.setText(Double.toString(proyecto.getConfiguracion().getValorA()));
+            txtValorB.setText(Double.toString(proyecto.getConfiguracion().getValorB()));
+        }
         this.proyecto = proyecto;
     }
 
     private void cambiarView(){
-        EjemploApplication.getStage().setHeight(Utilitario.ALTURA_PANTALLA_GRANDE);
-        EjemploApplication.getStage().setWidth(Utilitario.ANCHO_PANTALLA_GRANDE);
+        EjemploApplication.getStage().setHeight(Utilitario.ALTURA_600);
+        EjemploApplication.getStage().setWidth(Utilitario.ANCHO_1100);
         EjemploApplication.showView(EntradasView.class);
         entradasController.actualizarDatosProyecto(proyecto);
     }
 
-    //Inyecciones
-    private ProyectoService proyectoService;
-    private EntradasController entradasController;
     @Autowired
     public void setProyectoService(ProyectoService proyectoService) {
         this.proyectoService = proyectoService;

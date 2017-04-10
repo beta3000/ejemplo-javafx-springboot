@@ -17,16 +17,19 @@ public class CrearProyectoController {
     private Proyecto proyecto;
     @FXML
     private TextField txtNombre;
+    //Injecciones
+    private ProyectoService proyectoService;
+    private ConfiguracionController configuracionController;
 
     @FXML
     private void crearProyecto(){
-        if(txtNombre.getText().toString().isEmpty()){
+        if (txtNombre.getText().isEmpty()) {
             Utilitario.showMessageAlert("Igrese nombre","Ingrese un nombre para su nuevo proyecto");
         }else {
             //Creando el proyecto
             Proyecto proyecto = new Proyecto();
             proyecto.setFechaCreacion(LocalDateTime.now());
-            proyecto.setNombre(txtNombre.getText().toString());
+            proyecto.setNombre(txtNombre.getText());
 
             //Guardando el proyecto
             this.proyecto = proyectoService.save(proyecto);
@@ -38,15 +41,12 @@ public class CrearProyectoController {
     }
 
     private void cambiarView(){
-        EjemploApplication.getStage().setHeight(Utilitario.ALTURA_PANTALLA_PEQUENIA);
-        EjemploApplication.getStage().setWidth(Utilitario.ANCHO_PANTALLA_PEQUENIA);
+        EjemploApplication.getStage().setHeight(Utilitario.ALTURA_250);
+        EjemploApplication.getStage().setWidth(Utilitario.ANCHO_250);
         EjemploApplication.showView(ConfiguracionView.class);
         configuracionController.establecerProyecto(proyecto);
     }
 
-    //Injecciones
-    private ProyectoService proyectoService;
-    private ConfiguracionController configuracionController;
     @Autowired
     public void setProyectoService(ProyectoService proyectoService) {
         this.proyectoService = proyectoService;

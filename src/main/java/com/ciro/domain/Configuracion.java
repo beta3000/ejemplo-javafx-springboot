@@ -1,6 +1,8 @@
 package com.ciro.domain;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,10 +16,12 @@ public class Configuracion {
     private double valorA;
     @Column(name = "valor_b")
     private double valorB;
+    @Column(name = "fecha_actualizacion")
+    private LocalDateTime fechaActualizacion;
 
     //Relaciones
-    @OneToMany(mappedBy = "configuracion")
-    private List<Entrada> entradas;
+    @OneToMany(mappedBy = "configuracion", fetch = FetchType.EAGER)
+    private List<Entrada> entradas = new ArrayList<>();
 
     public Configuracion() {
     }
@@ -52,5 +56,18 @@ public class Configuracion {
 
     public void setEntradas(List<Entrada> entradas) {
         this.entradas = entradas;
+    }
+
+    public LocalDateTime getFechaActualizacion() {
+        return fechaActualizacion;
+    }
+
+    public void setFechaActualizacion(LocalDateTime fechaActualizacion) {
+        this.fechaActualizacion = fechaActualizacion;
+    }
+
+    @PrePersist
+    public void fechaCreacion() {
+        fechaActualizacion = LocalDateTime.now();
     }
 }

@@ -22,33 +22,35 @@ import java.time.format.DateTimeFormatter;
 public class ProyectoController {
 
     @FXML
-    TableView<Proyecto> tableViewProyectos;
+    private TableView<Proyecto> tableViewProyectos;
     @FXML
-    TableColumn<Proyecto,Long> idColumn;
+    private TableColumn<Proyecto, Long> idColumn;
     @FXML
-    TableColumn<Proyecto,String> fechaCreacionColumn;
+    private TableColumn<Proyecto, String> fechaCreacionColumn;
     @FXML
-    TableColumn<Proyecto,String> nombreColumn;
+    private TableColumn<Proyecto, String> nombreColumn;
     private ObservableList<Proyecto> proyectoObservableList = FXCollections.observableArrayList();
+    private ProyectoService proyectoService;
+
+    private EntradasController entradasController;
 
     @FXML
     private void abrirProyecto(){
         Proyecto proyecto = tableViewProyectos.getSelectionModel().getSelectedItem();
         if(proyecto != null){
-            EjemploApplication.getStage().setHeight(Utilitario.ALTURA_PANTALLA_GRANDE);
-            EjemploApplication.getStage().setWidth(Utilitario.ANCHO_PANTALLA_GRANDE);
+            EjemploApplication.getStage().setHeight(Utilitario.ALTURA_600);
+            EjemploApplication.getStage().setWidth(Utilitario.ANCHO_1100);
             EjemploApplication.showView(EntradasView.class);
             entradasController.actualizarDatosProyecto(proyecto);
         }else {
             Utilitario.showMessageAlert("Aviso","No has seleccionado proyecto.");
         }
-        System.out.println(proyecto);
     }
 
     @FXML
     private void nuevoProyecto(){
-        EjemploApplication.getStage().setHeight(Utilitario.ALTURA_CREAR_PROYECTO);
-        EjemploApplication.getStage().setWidth(Utilitario.ANCHO_CREAR_PROYECTO);
+        EjemploApplication.getStage().setHeight(Utilitario.ALTURA_250);
+        EjemploApplication.getStage().setWidth(Utilitario.ANCHO_250);
         EjemploApplication.showView(CrearProyectoView.class);
     }
 
@@ -70,7 +72,7 @@ public class ProyectoController {
         nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
     }
 
-    public void actualizaTabla(){
+    void actualizaTabla() {
         addData();
         tableViewProyectos.refresh();
     }
@@ -81,14 +83,12 @@ public class ProyectoController {
         tableViewProyectos.setItems(proyectoObservableList);
     }
 
-
-
-    private ProyectoService proyectoService;
     @Autowired
     public void setProyectoService(ProyectoService proyectoService) {
         this.proyectoService = proyectoService;
     }
     @Autowired
-    private EntradasController entradasController;
-
+    public void setEntradasController(EntradasController entradasController) {
+        this.entradasController = entradasController;
+    }
 }
